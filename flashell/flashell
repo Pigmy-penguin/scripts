@@ -1,0 +1,18 @@
+#! /usr/bin/env bash
+# This script reads a deck.csv in fla.sh format (https://github.com/tallguyjenks/fla.sh)
+# You can typically source it inside your .bashrc to show up a flascard and its answer everytime you run a shell
+
+# Flashcards are formatted like so:
+# category:question:answer:0
+# My english vocabulary flashcards format (which this script was designed for):
+# english:What does "ENGLISH-WORD" mean?:FRENCH-WORD,ANOTHER-FRENCH-WORD:0
+CATEGORY=english
+
+WORD=$(cat $HOME/.local/share/flash/deck.csv)
+
+LINE=$(echo "$WORD" | grep $CATEGORY | shuf -n 1 | sed 's/\([^>]\)-/\1 /g')
+
+ENGLISH_WORD=$(echo $LINE | cut -c 20- | cut -d'"' -f1)
+FRENCH_WORD=$(echo $LINE | cut -d":" -f3)
+
+echo -e "\e[36m$ENGLISH_WORD \e[0m\e[1m-> \e[0m\e[36m$FRENCH_WORD\e[0m"
