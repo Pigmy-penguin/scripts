@@ -1,5 +1,4 @@
 # My collection of useless scripts
-## Please don't rely on these :)
 
 ### Flashell
 Shows a flashcard (english vocabulary in my case)
